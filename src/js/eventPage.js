@@ -108,6 +108,8 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
       tabStates.setTabState(tab);
     });
   });
+
+  setCountBadge();
 });
 
 //add message and command listeners
@@ -149,7 +151,6 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
   }
   localStorage.setItem(CURRENT_TAB_ID, tabId);
   localStorage.setItem(PREVIOUS_TAB_ID, lastTabId);
-  setCountBadge();
 });
 
 
