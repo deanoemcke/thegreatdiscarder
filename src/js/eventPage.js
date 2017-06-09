@@ -153,6 +153,9 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
   localStorage.setItem(PREVIOUS_TAB_ID, lastTabId);
 });
 
+chrome.tabs.onRemoved.addListener(function (tabID, removeInfo) {
+    updateBadgeCount();
+})
 
 function isDiscarded(tab) {
   return tab.discarded;
