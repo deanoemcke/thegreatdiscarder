@@ -149,6 +149,7 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
   }
   localStorage.setItem(CURRENT_TAB_ID, tabId);
   localStorage.setItem(PREVIOUS_TAB_ID, lastTabId);
+  setCountBadge();
 });
 
 
@@ -295,6 +296,14 @@ function resetTabTimer(tab) {
   });
 }
 
+// Set badge to reflect the number of discarded tabs
+function setCountBadge() {
+    chrome.tabs.query({discarded: true}, function (tabs) {
+        chrome.browserAction.setBadgeText({text: tabs.length.toString()});
+    })
+
+}
+
 function discardTab(tab) {
 
   chrome.tabs.discard(tab.id, function (discardedTab) {
@@ -302,6 +311,8 @@ function discardTab(tab) {
     if (chrome.runtime.lastError) {
       console.log(chrome.runtime.lastError.message);
     }
+
+    setCountBadge();
   });
 }
 
