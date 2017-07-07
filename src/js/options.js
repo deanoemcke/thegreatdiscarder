@@ -25,7 +25,9 @@ function initialise(options) {
     'dontDiscardPinned': storage.IGNORE_PINNED,
     'dontDiscardAudio': storage.IGNORE_AUDIO,
     'timeToDiscard': storage.SUSPEND_TIME,
-    'whitelist': storage.WHITELIST
+    'whitelist': storage.WHITELIST,
+    'addContextMenu': storage.ADD_CONTEXT,
+    "syncOptions": storage.SYNC_OPTIONS,
   };
   elementIdMap = invert(elementPrefMap);
 
@@ -56,6 +58,7 @@ function initialise(options) {
   }
 
   setAutoDiscardOptionsVisibility(options[storage.SUSPEND_TIME] > 0);
+  setSyncNoteVisibility(!options[storage.SYNC_OPTIONS]);
 }
 
 function invert(obj) {
@@ -120,6 +123,14 @@ function setAutoDiscardOptionsVisibility(visible) {
   });
 }
 
+function setSyncNoteVisibility(visible) {
+  if (visible) {
+    document.getElementById('syncNote').style.display = 'block';
+  } else {
+    document.getElementById('syncNote').style.display = 'none';
+  }
+}
+
 function handleChange(element) {
   return function () {
     var pref = elementPrefMap[element.id],
@@ -129,13 +140,16 @@ function handleChange(element) {
     if (pref === storage.SUSPEND_TIME) {
       interval = getOptionValue(element);
       setAutoDiscardOptionsVisibility(interval > 0);
+
+    } else if (pref === storage.SYNC_OPTIONS) {
+      setSyncNoteVisibility(!getOptionValue(element));
     }
   };
 }
 
 function saveChanges(elements, callback) {
-console.log(elements);
-  let options = {};
+  // console.log(elements);
+  var options = {};
   for (var i = 0; i < elements.length; i++) {
 
     var element = elements[i];
@@ -153,11 +167,21 @@ console.log(elements);
     if (pref === storage.SUSPEND_TIME && oldValue !== newValue) {
       chrome.runtime.sendMessage({ action: 'resetTabTimers' });
     }
+
+    //show or hide context menu items
+    if (pref === storage.ADD_CONTEXT && oldValue !== newValue) {
+      chrome.runtime.sendMessage({ action: 'updateContextMenuItems', visible: newValue });
+    }
     options[pref] = newValue;
   }
 
   //save option
-  storage.setOptions(options, callback);
+  storage.setOptions(options, function() {
+
+    // Push out all our saved settings to sync storage.
+    storage.syncOptions(options);
+    callback();
+  });
 }
 
 function closeSettings() {
