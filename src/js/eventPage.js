@@ -400,7 +400,7 @@ function discardAllTabs() {
     var curWindowId = tabs[0].windowId;
     chrome.windows.get(curWindowId, {populate: true}, function(curWindow) {
       curWindow.tabs.forEach(function (tab) {
-        if (!tab.active) {
+        if (!tab.active && !tab.pinned) {
           requestTabSuspension(tab, true);
         }
       });
