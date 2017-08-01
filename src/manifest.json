@@ -48,6 +48,12 @@
     },
     "6-reload-all-windows": {
       "description": "Reload all tabs in all windows"
+    },
+    "7-close-all-discarded-tabs": {
+      "description": "Close all discarded tabs in active window"
+    },
+    "8-close-all-discarded-windows": {
+      "description": "Close all discarded tabs in all windows"
     }
   }
 }

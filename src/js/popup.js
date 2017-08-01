@@ -133,6 +133,10 @@
       });
       window.close();
     });
+    document.getElementById('closeAllDiscarded').addEventListener('click', function (e) {
+      chrome.runtime.sendMessage({ action: 'closeAllDiscarded' });
+      window.close();
+    });
 
     chrome.runtime.sendMessage({ action: 'requestCurrentTabInfo' }, function (info) {
 
