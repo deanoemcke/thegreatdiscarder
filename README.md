@@ -7,7 +7,7 @@ If you have suggestions or problems using the extension, please [submit a bug or
 
 ### Chrome Web Store
 
-The Great Suspender is also [available via the official Chrome Web Store](https://chrome.google.com/webstore/detail/the-great-discarder/jlipbpadkjcklpeiajndiijbeieicbdh).
+The Great Discarder is also [available via the official Chrome Web Store](https://chrome.google.com/webstore/detail/the-great-discarder/jlipbpadkjcklpeiajndiijbeieicbdh).
 
 ### Install as an extension from source
 
