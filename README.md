@@ -7,7 +7,7 @@ If you have suggestions or problems using the extension, please [submit a bug or
 
 ### Chrome Web Store
 
-The Great Suspender is also [available via the official Chrome Web Store](https://chrome.google.com/webstore/detail/the-great-discarder/jlipbpadkjcklpeiajndiijbeieicbdh).
+The Great Discarder is also [available via the official Chrome Web Store](https://chrome.google.com/webstore/detail/the-great-discarder/jlipbpadkjcklpeiajndiijbeieicbdh).
 
 ### Install as an extension from source
 
@@ -40,5 +40,5 @@ This work is licensed under a GNU GENERAL PUBLIC LICENSE (v2)
 
 ### Shoutouts
 
-This package uses the indexedDb wrapper [db.js] (https://github.com/aaronpowell/db.js) written by Aaron Powell.
+This package uses the indexedDb wrapper [db.js](https://github.com/aaronpowell/db.js) written by Aaron Powell.
 Thank you also to www.browserstack.com for providing free chrome testing tools.
