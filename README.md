@@ -12,7 +12,7 @@ The Great Discarder is also [available via the official Chrome Web Store](https:
 ### Install as an extension from source
 
 1. Download the **[latest available version](https://github.com/deanoemcke/thegreatdiscarder/releases/tag/v0.1.2)** and unarchive to your preferred location (whichever suits you).
-2. Using **Google Chrome** browser, navigate to chrome://extensions/ and enable "Developer mode" in the upper right corner.
+2. Using **Google Chrome** browser, navigate to chrome://extensions and enable "Developer mode" in the upper right corner.
 3. Click on the <kbd>Load unpacked extension...</kbd> button.
 4. Browse to the src directory of the downloaded, unarchived release and confirm.
 
@@ -32,7 +32,7 @@ It should say:
 Done, without errors.
 ```
 
-The extension in crx format will be inside the build/crx/ directory. You can drag it into [extensions] (chrome://extensions) to install locally.
+The extension in crx format will be inside the build/crx/ directory. You can drag it into chrome://extensions to install it locally.
 
 ### License
 
@@ -40,5 +40,5 @@ This work is licensed under the GPLv2.
 
 ### Shoutouts
 
-This package uses the indexedDb wrapper [db.js] (https://github.com/aaronpowell/db.js) written by Aaron Powell.
+This package uses the indexedDb wrapper [db.js](https://github.com/aaronpowell/db.js) written by Aaron Powell.
 Thank you also to www.browserstack.com for providing free chrome testing tools.
