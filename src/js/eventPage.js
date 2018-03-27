@@ -117,6 +117,8 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
       tabStates.setTabState(tab);
     });
   });
+
+  updateBadgeCount();
 });
 
 //add message and command listeners
@@ -131,6 +133,7 @@ chrome.windows.onFocusChanged.addListener(function (windowId) {
     console.log('window changed: ' + windowId);
   }
 });
+
 chrome.tabs.onActivated.addListener(function (activeInfo) {
 
   console.log(activeInfo);
@@ -160,6 +163,9 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
   localStorage.setItem(PREVIOUS_TAB_ID, lastTabId);
 });
 
+chrome.tabs.onRemoved.addListener(function (tabID, removeInfo) {
+    updateBadgeCount();
+})
 
 function isDiscarded(tab) {
   return tab.discarded;
@@ -304,6 +310,14 @@ function resetTabTimer(tab) {
   });
 }
 
+// Set badge to reflect the number of discarded tabs
+function updateBadgeCount() {
+    chrome.tabs.query({discarded: true}, function (tabs) {
+        chrome.browserAction.setBadgeText({text: tabs.length.toString()});
+    })
+
+}
+
 function discardTab(tab) {
 
   chrome.tabs.discard(tab.id, function (discardedTab) {
@@ -311,6 +325,8 @@ function discardTab(tab) {
     if (chrome.runtime.lastError) {
       console.log(chrome.runtime.lastError.message);
     }
+
+    updateBadgeCount();
   });
 }
 
