@@ -4,6 +4,8 @@
   "description": "A chrome extension for discarding all tabs to free up memory",
   "main": "",
   "scripts": {
+    "build": "grunt",
+    "generate-key": "openssl genrsa -out key.pem",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -13,8 +15,8 @@
   "keywords": [
     "chrome",
     "extension",
-	  "addon",
-	  "memory",
+    "addon",
+    "memory",
     "discard",
     "tab"
   ],
