@@ -50,13 +50,17 @@ chrome.runtime.onStartup.addListener(function () {
   ga('require', 'displayfeatures');
   ga('send', 'pageview', '/eventPage.html');
 
-  chrome.alarms.clearAll(function () {
-    localStorage.setItem(TEMPORARY_WHITELIST, []);
-    tabStates.clearTabStates(function () {
-      chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
-        if (tabs.length > 0) {
-          localStorage.setItem(CURRENT_TAB_ID, tabs[0].id);
-        }
+  storage.getOptions(function (options) {
+    chrome.alarms.clearAll(function () {
+      localStorage.setItem(TEMPORARY_WHITELIST, []);
+      tabStates.clearTabStates(function () {
+        chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+          // Discarding all tabs after clearTabStates and after forcing Chrome to query all tab states seems to make sense.
+          if (options[storage.DISCARD_STARTUP]) { discardAllTabs(); }
+          if (tabs.length > 0) {
+            localStorage.setItem(CURRENT_TAB_ID, tabs[0].id);
+          }
+        });
       });
     });
   });
