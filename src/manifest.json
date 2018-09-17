@@ -1,7 +1,7 @@
 {
-  "name": "The Great Discarder",
+  "name": "RK Discarder",
   "description": "Automatically discards unused tabs to free up system resources",
-  "version": "0.1.3",
+  "version": "0.1.3.1",
   "permissions": [
     "tabs",
     "storage",
@@ -17,7 +17,7 @@
   "content_scripts": [
   ],
   "browser_action": {
-    "default_title": "The Great Discarder",
+    "default_title": "RK Discarder Discarder",
     "default_icon": "img/icon19.png",
     "default_popup": "html/popup.html"
   },
